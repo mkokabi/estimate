@@ -3,10 +3,11 @@ import { StepMachine, StepContainer, Step } from "react-step-machine";
 import { ActionBtn } from "./ActionBtn";
 import { PrimaryButton, Stack } from "@fluentui/react";
 import { template } from "./store/template";
+import { useForm } from "react-hook-form";
 import { ProjectStageStep } from "./components/steps/01_ProjectStageStep";
 import { ProjectTypeStep } from "./components/steps/02_ProjectTypeStep";
 import { ProjectComponentStep } from "./components/steps/03_ProjectComponentStep";
-import { useForm } from "react-hook-form";
+import { IntegrationStep } from "./components/steps/04_IntegrationStep";
 
 function App() {
   const {
@@ -41,6 +42,13 @@ function App() {
               <Step order={3}>
                 <ProjectComponentStep
                   options={template.projectComponentsStepOptions}
+                  control={control}
+                  errors={errors}
+                />
+              </Step>
+              <Step order={4}>
+                <IntegrationStep
+                  options={template.integrationStepOptions}
                   control={control}
                   errors={errors}
                 />

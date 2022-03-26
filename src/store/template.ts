@@ -11,7 +11,11 @@ export const template: ITemplate = {
   },
   projectTypeStepOptions: {
     projectTypes: [
-      { key: "integration", text: "Integration" },
+      {
+        key: "integration",
+        text: "Integration",
+        dependentSteps: ["Integration"],
+      },
       { key: "web site", text: "Web site" },
       { key: "tools", text: "Tools" },
     ],
@@ -22,6 +26,13 @@ export const template: ITemplate = {
       { key: "mobileInterface", text: "Mobile Interface" },
       { key: "database", text: "Database" },
       { key: "hardware", text: "Hardware purchase" },
+    ],
+  },
+  integrationStepOptions: {
+    integrationTypes: [
+      { key: "restApi", text: "Rest API" },
+      { key: "webService", text: "Web Service" },
+      { key: "customer", text: "Custom API" },
     ],
   },
 };

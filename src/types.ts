@@ -1,22 +1,32 @@
-export interface keyTextPair {
+export interface IKeyTextPair {
   key: string;
   text: string;
 }
 
 export interface IProjectStageStepOptions {
-  projectStages: keyTextPair[];
+  projectStages: IKeyTextPair[];
+}
+
+export interface IProjectType extends IKeyTextPair
+{
+  dependentSteps?: string[]
 }
 
 export interface IProjectTypeStepOptions {
-  projectTypes: keyTextPair[];
+  projectTypes: IProjectType[];
 }
 
 export interface IProjectComponentsStepOptions {
-  projectComponents: keyTextPair[];
+  projectComponents: IKeyTextPair[];
+}
+
+export interface IIntegrationStepOptions {
+  integrationTypes: IKeyTextPair[];
 }
 
 export interface ITemplate {
   projectStateStepOptions: IProjectStageStepOptions;
   projectTypeStepOptions: IProjectTypeStepOptions;
   projectComponentsStepOptions: IProjectComponentsStepOptions;
+  integrationStepOptions: IIntegrationStepOptions
 }
