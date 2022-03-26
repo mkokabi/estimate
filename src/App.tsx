@@ -2,29 +2,13 @@ import "./App.css";
 import { StepMachine, StepContainer, Step } from "react-step-machine";
 import { ActionBtn } from "./ActionBtn";
 import { Stack } from "@fluentui/react";
+import { template } from "./store/template";
 import { ProjectStageStep } from "./components/steps/01_ProjectStageStep";
 import { ProjectTypeStep } from "./components/steps/02_ProjectTypeStep";
-import { ITemplate } from "./types";
+import { ProjectComponentStep } from "./components/steps/03_ProjectComponentStep";
 
 function App() {
-  const template: ITemplate = {
-    projectStateStepOptions: {
-      projectStages: [
-        { key: "brandNew", text: "Brand New" },
-        { key: "update", text: "Update" },
-        { key: "migration", text: "Migration" },
-        { key: "extension", text: "Extension" },
-      ],
-    },
-    projectTypeStepOptions: {
-      projectTypes: [
-        { key: "integration", text: "Integration" },
-        { key: "web site", text: "Web site" },
-        { key: "tools", text: "Tools" },
-      ],
-    },
-  };
-
+  
   return (
     <div className="App">
       <Stack horizontalAlign="center">
@@ -37,7 +21,9 @@ function App() {
             <Step order={2}>
               <ProjectTypeStep options={template.projectTypeStepOptions} />
             </Step>
-            <Step order={3}>step 3</Step>
+            <Step order={3}>
+              <ProjectComponentStep options={template.projectComponentsStepOptions} />
+            </Step>
           </StepContainer>
 
           {/* You will have more control with our special hooks inside components */}
