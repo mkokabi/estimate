@@ -1,13 +1,8 @@
 import React, { FC } from "react";
-import { Checkbox, Stack, Text } from "@fluentui/react";
+import { Stack, Text } from "@fluentui/react";
+import { ControlledCheckBox } from "../../controls/ControlledCheckBox";
 
-export const ProjectComponentStep: FC<any> = ({ options }) => {
-  function _onChange(
-    ev?: React.FormEvent<HTMLElement | HTMLInputElement>,
-    isChecked?: boolean
-  ) {
-    console.log(`The option has been changed to ${isChecked}.`);
-  }
+export const ProjectComponentStep: FC<any> = ({ options, control, errors }) => {
   const stackTokens = { childrenGap: 20 };
 
   return (
@@ -16,7 +11,13 @@ export const ProjectComponentStep: FC<any> = ({ options }) => {
         <Text variant="xLarge">Project Components</Text>
         <Text variant="mediumPlus">Select the components</Text>
         {options.projectComponents.map((component: any) => (
-          <Checkbox label={component.text} onChange={_onChange} />
+          <ControlledCheckBox 
+            label={component.text}
+            key={component.key.toString()}
+            control={control}
+            name={component.key.toString()}
+            errors={undefined}
+            />
         ))}
       </Stack>
     </div>

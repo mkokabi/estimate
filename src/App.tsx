@@ -41,6 +41,8 @@ function App() {
               <Step order={3}>
                 <ProjectComponentStep
                   options={template.projectComponentsStepOptions}
+                  control={control}
+                  errors={errors}
                 />
               </Step>
             </StepContainer>
