@@ -1,25 +1,26 @@
 import React, { FC } from "react";
 import {
-  ChoiceGroup,
   IChoiceGroupOption,
-  IComboBoxStyles,
   Text,
 } from "@fluentui/react";
+import { ControlledChoiceGroup } from "../../controls/ControlledChoiceGroup";
 
-export const ProjectTypeStep: FC<any> = ({options}) => {
+export const ProjectTypeStep: FC<any> = ({options, control, errors}) => {
   const projectTypes = options.projectTypes.map((option: any) => {
     return { key: option.key, text: option.text } as IChoiceGroupOption;
   });
 
-  const comboBoxStyles: Partial<IComboBoxStyles> = { root: { maxWidth: 300 } };
-
   return (
     <div>
       <Text variant="xLarge">Project Type</Text>
-      <ChoiceGroup
+      <ControlledChoiceGroup
         label="Select a type"
         options={projectTypes}
-        styles={comboBoxStyles}
+        name="Type"
+        required={true}
+        control={control}
+        errors={errors}
+        rules={{ required: "Please select a value" }}
       />
     </div>
   );
