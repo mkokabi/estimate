@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { ChoiceGroup, IChoiceGroupOption, IComboBoxStyles, Text } from '@fluentui/react';
 
-export const ProjectStageStep = () => {
-  const projectTypes: IChoiceGroupOption[] = [
-    { key: 'brandNew', text: 'Brand New' },
-    { key: 'update', text: 'Update' },
-    { key: 'migration', text: 'Migration'},
-    { key: 'extension', text: 'Extension'},
-  ];
-  
+export const ProjectStageStep: FC<any> = ({options}) => {
+  const projectStages = options.projectStages.map((option: any) => {
+    return { key: option.key, text: option.text } as IChoiceGroupOption;
+  });
+
   const comboBoxStyles: Partial<IComboBoxStyles> = { root: { maxWidth: 300 } };
   
   return (
@@ -16,7 +13,7 @@ export const ProjectStageStep = () => {
       <Text variant='xLarge'>Project Stage</Text>
       <ChoiceGroup
         label="Select a stage"
-        options={projectTypes}
+        options={projectStages}
         styles={comboBoxStyles}
       />
     </div>
