@@ -1,3 +1,4 @@
+import { DefaultButton, Stack } from "@fluentui/react";
 import { useStepActions, useStepStore } from "react-step-machine";
 
 export const ActionBtn = () => {
@@ -8,19 +9,21 @@ export const ActionBtn = () => {
       },
     });
 
-  const { activeNamedStep, totalSteps, activeStep } = useStepStore();
+  // const { activeNamedStep, totalSteps, activeStep } = useStepStore();
 
   return (
     <div>
-      <h2>Step {activeStep}</h2>
+      {/* <h2>Step {activeStep}</h2>
       <h2>Step {activeNamedStep}</h2>
-      <p>Total Steps: {totalSteps}</p>
-      <div style={{ display: "flex", gap: 10, marginTop: "auto" }}>
-        <button onClick={() => firstStep()}>First step</button>
-        <button onClick={() => previousStep()}>Prev</button>
-        <button onClick={() => nextStep()}>Next</button>
-        <button onClick={() => lastStep()}>Last step</button>
-      </div>
+      <p>Total Steps: {totalSteps}</p> */}
+      <Stack>
+        <Stack horizontal>
+          <DefaultButton onClick={() => firstStep()}>First step</DefaultButton>
+          <DefaultButton onClick={() => previousStep()}>Prev</DefaultButton>
+          <DefaultButton onClick={() => nextStep()}>Next</DefaultButton>
+          <DefaultButton onClick={() => lastStep()}>Last step</DefaultButton>
+        </Stack>
+      </Stack>
     </div>
   );
 };
