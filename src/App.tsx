@@ -21,7 +21,7 @@ function App() {
   const onSubmit = (data: any) => console.log(data);
   const [values, setValues] = useState({});
   const context = {
-    values: {},
+    values: values,
     setValues: (newValue: any) => {
       const combinedValue = {...values, ...newValue};
       setValues(combinedValue);

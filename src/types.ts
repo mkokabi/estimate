@@ -3,24 +3,28 @@ export interface IKeyTextPair {
   text: string;
 }
 
-export interface IProjectStageStepOptions {
+export interface IStep {
+  order: number;
+  stepDependentOn?: string;
+}
+
+export interface IProjectStageStepOptions extends IStep {
   projectStages: IKeyTextPair[];
 }
 
 export interface IProjectType extends IKeyTextPair
 {
-  dependentSteps?: string[]
 }
 
-export interface IProjectTypeStepOptions {
+export interface IProjectTypeStepOptions extends IStep  {
   projectTypes: IProjectType[];
 }
 
-export interface IProjectComponentsStepOptions {
+export interface IProjectComponentsStepOptions extends IStep  {
   projectComponents: IKeyTextPair[];
 }
 
-export interface IIntegrationStepOptions {
+export interface IIntegrationStepOptions extends IStep  {
   integrationTypes: IKeyTextPair[];
 }
 
