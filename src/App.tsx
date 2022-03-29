@@ -8,6 +8,7 @@ import { ProjectStageStep } from "./components/steps/01_ProjectStageStep";
 import { ProjectTypeStep } from "./components/steps/02_ProjectTypeStep";
 import { ProjectComponentStep } from "./components/steps/03_ProjectComponentStep";
 import { IntegrationStep } from "./components/steps/04_IntegrationStep";
+import { DatabaseStep } from "./components/steps/05_DatabaseStep";
 import { AppContext } from "./AppContext";
 import { useState } from "react";
 
@@ -60,6 +61,13 @@ function App() {
                 <Step order={4}>
                   <IntegrationStep
                     options={template.integrationStepOptions}
+                    control={control}
+                    errors={errors}
+                  />
+                </Step>
+                <Step order={5}>
+                  <DatabaseStep
+                    options={template.databaseStepOptions}
                     control={control}
                     errors={errors}
                   />

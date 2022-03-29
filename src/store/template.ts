@@ -20,7 +20,6 @@ export const template: ITemplate = {
   },
   projectComponentsStepOptions: {
     order: 3,
-    stepDependentOn: "Type==='integration'",
     projectComponents: [
       { key: "backend", text: "Backend" },
       { key: "webInterface", text: "Web Interface" },
@@ -31,10 +30,19 @@ export const template: ITemplate = {
   },
   integrationStepOptions: {
     order: 4,
+    stepDependentOn: "Type==='integration'",
     integrationTypes: [
       { key: "restApi", text: "Rest API" },
       { key: "webService", text: "Web Service" },
       { key: "customer", text: "Custom API" },
+    ],
+  },
+  databaseStepOptions: {
+    order: 5,
+    stepDependentOn: "database",
+    databaseTypes: [
+      { key: "sql", text: "SQL" },
+      { key: "noSql", text: "NoSQL" },
     ],
   },
 };

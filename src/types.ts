@@ -28,9 +28,14 @@ export interface IIntegrationStepOptions extends IStep  {
   integrationTypes: IKeyTextPair[];
 }
 
+export interface IDatabaseStepOptions extends IStep {
+  databaseTypes: IKeyTextPair[];
+}
+
 export interface ITemplate {
   projectStateStepOptions: IProjectStageStepOptions;
   projectTypeStepOptions: IProjectTypeStepOptions;
   projectComponentsStepOptions: IProjectComponentsStepOptions;
-  integrationStepOptions: IIntegrationStepOptions
+  integrationStepOptions: IIntegrationStepOptions;
+  databaseStepOptions: IDatabaseStepOptions;
 }
