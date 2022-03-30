@@ -65,6 +65,11 @@ export const template: ITemplate = {
             { key: "custom", text: "Custom Protocol" },
           ],
         },
+        {
+          type: "text",
+          key: "implementation_time",
+          label: "Estimation time for implementation",
+        }
       ],
     },
     {

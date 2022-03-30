@@ -5,7 +5,9 @@ export interface IKeyTextPair {
 
 export interface IControl {
   type: string;
-  options: IKeyTextPair[];
+  key?: string;
+  label?: string;
+  options?: IKeyTextPair[];
 }
 
 export interface IStep {
