@@ -8,27 +8,25 @@ import { IStep } from "./types";
 export const ActionBtn = () => {
   const context = useContext(AppContext);
 
-  const { goToStep, firstStep, lastStep, nextStep, previousStep } =
+  const { goToStep, firstStep, lastStep } =
     useStepActions({
       onStepChangeCb: (prevStep, activeStep) => {
         console.log(prevStep, activeStep);
       },
     });
 
-  const { activeNamedStep, totalSteps, activeStep } = useStepStore();
+  const { totalSteps, activeStep } = useStepStore();
 
   const [currStep, setCurrStep] = useState(activeStep);
 
   const findNextStep = (currStep: number): number => {
-    const steps = Object.keys(template);
-    const nextStepName = steps.find((step) => {
-      const st: IStep = (template as any)[step];
-      return st.order === currStep + 1;
-    }) || '';
-    const nextStepObj: IStep = (template as any)[nextStepName];
-    const stepDependentOn = nextStepObj?.stepDependentOn;
+    const steps = template.steps;
+    const nextStep: IStep = steps[currStep];
+    const stepDependentOn = nextStep?.stepDependentOn;
     if (stepDependentOn) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const contextValues = context.values;
+      // eslint-disable-next-line no-eval
       if (eval(`!(contextValues.${[stepDependentOn]})`))
       {
         return currStep + 2; 
@@ -39,15 +37,13 @@ export const ActionBtn = () => {
   };
 
   const findPrevStep = (currStep: number): number => {
-    const steps = Object.keys(template);
-    const prevStepName = steps.find((step) => {
-      const st: IStep = (template as any)[step];
-      return st.order === currStep - 1;
-    }) || '';
-    const prevStepObj: IStep = (template as any)[prevStepName];
-    const stepDependentOn = prevStepObj?.stepDependentOn;
+    const steps = template.steps;
+    const prevStep: IStep = steps[currStep - 2]
+    const stepDependentOn = prevStep?.stepDependentOn;
     if (stepDependentOn) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const contextValues = context.values;
+      // eslint-disable-next-line no-eval
       if (eval(`!(contextValues.${[stepDependentOn]})`))
       {
         return currStep - 2; 

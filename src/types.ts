@@ -3,13 +3,21 @@ export interface IKeyTextPair {
   text: string;
 }
 
+export interface IControl {
+  type: string;
+  options: IKeyTextPair[];
+}
+
 export interface IStep {
   order: number;
+  title: string;
+  key: string;
   stepDependentOn?: string;
+  controls?: IControl[];
 }
 
 export interface IProjectStageStepOptions extends IStep {
-  projectStages: IKeyTextPair[];
+  // projectStages: IKeyTextPair[];
 }
 
 export interface IProjectType extends IKeyTextPair
@@ -17,7 +25,7 @@ export interface IProjectType extends IKeyTextPair
 }
 
 export interface IProjectTypeStepOptions extends IStep  {
-  projectTypes: IProjectType[];
+  // projectTypes: IProjectType[];
 }
 
 export interface IProjectComponentsStepOptions extends IStep  {
@@ -33,9 +41,5 @@ export interface IDatabaseStepOptions extends IStep {
 }
 
 export interface ITemplate {
-  projectStateStepOptions: IProjectStageStepOptions;
-  projectTypeStepOptions: IProjectTypeStepOptions;
-  projectComponentsStepOptions: IProjectComponentsStepOptions;
-  integrationStepOptions: IIntegrationStepOptions;
-  databaseStepOptions: IDatabaseStepOptions;
+  steps: IStep[];
 }

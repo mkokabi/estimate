@@ -4,13 +4,9 @@ import { ActionBtn } from "./ActionBtn";
 import { PrimaryButton, Stack } from "@fluentui/react";
 import { template } from "./store/template";
 import { useForm } from "react-hook-form";
-import { ProjectStageStep } from "./components/steps/01_ProjectStageStep";
-import { ProjectTypeStep } from "./components/steps/02_ProjectTypeStep";
-import { ProjectComponentStep } from "./components/steps/03_ProjectComponentStep";
-import { IntegrationStep } from "./components/steps/04_IntegrationStep";
-import { DatabaseStep } from "./components/steps/05_DatabaseStep";
 import { AppContext } from "./AppContext";
 import { useState } from "react";
+import { ProjectStep } from "./components/ProjectStep";
 
 function App() {
   const {
@@ -24,10 +20,10 @@ function App() {
   const context = {
     values: values,
     setValues: (newValue: any) => {
-      const combinedValue = {...values, ...newValue};
+      const combinedValue = { ...values, ...newValue };
       setValues(combinedValue);
-    }
-  }
+    },
+  };
 
   return (
     <AppContext.Provider value={context}>
@@ -37,41 +33,15 @@ function App() {
             <StepMachine>
               {/* Steps  */}
               <StepContainer styles={{ minHeight: "350px" }}>
-                <Step order={1}>
-                  <ProjectStageStep
-                    options={template.projectStateStepOptions}
-                    control={control}
-                    errors={errors}
-                  />
-                </Step>
-                <Step order={2}>
-                  <ProjectTypeStep
-                    options={template.projectTypeStepOptions}
-                    control={control}
-                    errors={errors}
-                  />
-                </Step>
-                <Step order={3}>
-                  <ProjectComponentStep
-                    options={template.projectComponentsStepOptions}
-                    control={control}
-                    errors={errors}
-                  />
-                </Step>
-                <Step order={4}>
-                  <IntegrationStep
-                    options={template.integrationStepOptions}
-                    control={control}
-                    errors={errors}
-                  />
-                </Step>
-                <Step order={5}>
-                  <DatabaseStep
-                    options={template.databaseStepOptions}
-                    control={control}
-                    errors={errors}
-                  />
-                </Step>
+                {template.steps.map(step => (
+                  <Step order={step.order}>
+                    <ProjectStep
+                      options={step}
+                      control={control}
+                      errors={errors}
+                    />
+                  </Step>
+                ))}
               </StepContainer>
 
               {/* You will have more control with our special hooks inside components */}
