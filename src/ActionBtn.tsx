@@ -8,12 +8,11 @@ import { IStep } from "./types";
 export const ActionBtn = () => {
   const context = useContext(AppContext);
 
-  const { goToStep, firstStep, lastStep } =
-    useStepActions({
-      onStepChangeCb: (prevStep, activeStep) => {
-        console.log(prevStep, activeStep);
-      },
-    });
+  const { goToStep, firstStep, lastStep } = useStepActions({
+    onStepChangeCb: (prevStep, activeStep) => {
+      console.log(prevStep, activeStep);
+    },
+  });
 
   const { totalSteps, activeStep } = useStepStore();
 
@@ -21,36 +20,46 @@ export const ActionBtn = () => {
 
   const findNextStep = (currStep: number): number => {
     const steps = template.steps;
-    const nextStep: IStep = steps[currStep];
-    const stepDependentOn = nextStep?.stepDependentOn;
-    if (stepDependentOn) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const contextValues = context.values;
-      // eslint-disable-next-line no-eval
-      if (eval(`!(contextValues.${[stepDependentOn]})`))
-      {
-        return currStep + 2; 
+    let newStep = currStep + 1;
+    while (true) {
+      const nextStep: IStep = steps[newStep - 1];
+      const stepDependentOn = nextStep?.stepDependentOn;
+      if (stepDependentOn) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const contextValues = context.values;
+        // eslint-disable-next-line no-eval
+        if (eval(`!(contextValues.${[stepDependentOn]})`)) {
+          newStep = newStep + 1;
+          continue;
+        }
+        break;
       }
+      break;
     }
 
-    return currStep + 1;
+    return newStep;
   };
 
   const findPrevStep = (currStep: number): number => {
     const steps = template.steps;
-    const prevStep: IStep = steps[currStep - 2]
-    const stepDependentOn = prevStep?.stepDependentOn;
-    if (stepDependentOn) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const contextValues = context.values;
-      // eslint-disable-next-line no-eval
-      if (eval(`!(contextValues.${[stepDependentOn]})`))
-      {
-        return currStep - 2; 
+    let newStep = currStep - 1;
+    while (true) {
+      const prevStep: IStep = steps[newStep - 1];
+      const stepDependentOn = prevStep?.stepDependentOn;
+      if (stepDependentOn) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const contextValues = context.values;
+        // eslint-disable-next-line no-eval
+        if (eval(`!(contextValues.${[stepDependentOn]})`)) {
+          newStep = newStep - 1;
+          continue;
+        }
+        break;
       }
+      break;
     }
 
-    return currStep - 1;
+    return newStep;
   };
 
   const handleNextClicked = () => {
