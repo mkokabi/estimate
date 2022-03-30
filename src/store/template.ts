@@ -68,7 +68,12 @@ export const template: ITemplate = {
         {
           type: "text",
           key: "implementation_time",
-          label: "Estimation time for implementation",
+          label: "Estimated time for implementation",
+        },
+        {
+          type: "text",
+          key: "integration_test_time",
+          label: "Estimated time for integration test",
         }
       ],
     },
@@ -85,6 +90,16 @@ export const template: ITemplate = {
             { key: "noSql", text: "NoSQL" },
           ],
         },
+        {
+          type: "text",
+          key: "design_time",
+          label: "Estimated time for database design",
+        },
+        {
+          type: "text",
+          key: "implementation_time",
+          label: "Estimated time for implementation",
+        }
       ],
     },
     {
@@ -100,6 +115,16 @@ export const template: ITemplate = {
             { key: "modern", text: "Modern Javascript frameworks" },
           ],
         },
+        {
+          type: "text",
+          key: "design_time",
+          label: "Estimated time for UI/UX design",
+        },
+        {
+          type: "text",
+          key: "implementation_time",
+          label: "Estimated time for implementation",
+        }
       ],
     },
     {
