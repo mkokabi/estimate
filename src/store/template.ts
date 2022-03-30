@@ -62,7 +62,7 @@ export const template: ITemplate = {
           options: [
             { key: "restApi", text: "Rest API" },
             { key: "webService", text: "Web Service" },
-            { key: "customer", text: "Custom API" },
+            { key: "custom", text: "Custom Protocol" },
           ],
         },
       ],
@@ -70,8 +70,8 @@ export const template: ITemplate = {
     {
       order: 5,
       title: "Database",
-      key: "Database",
-      stepDependentOn: "database",
+      key: "DB",
+      stepDependentOn: "Components_database",
       controls: [
         {
           type: "checkbox",
@@ -81,6 +81,27 @@ export const template: ITemplate = {
           ],
         },
       ],
+    },
+    {
+      order: 6,
+      title: "User interface",
+      key: "UI",
+      stepDependentOn: "Components_webInterface",
+      controls: [
+        {
+          type: "radio",
+          options: [
+            { key: "legacy", text: "Legacy UI technologies" },
+            { key: "modern", text: "Modern Javascript frameworks" },
+          ],
+        },
+      ],
+    },
+    {
+      order: 7,
+      title: "Summary",
+      key: "Summary",
+      controls: [],
     },
   ],
 };

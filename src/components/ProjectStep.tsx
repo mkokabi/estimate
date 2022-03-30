@@ -9,7 +9,7 @@ export const ProjectStep: FC<any> = ({ options, control, errors }) => {
 
   return (
     <div>
-      <Text variant="xLarge">{options.title}</Text>
+      <Text variant="xLarge">{`${options.order}. ${options.title}`}</Text>
       <Stack tokens={stackTokens}>
         {options.controls.map((_control: IControl) => {
           if (_control.type === "radio") {
