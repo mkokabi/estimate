@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { AppContext } from "./AppContext";
 import { useState } from "react";
 import { ProjectStep } from "./components/ProjectStep";
+import SummaryStep from "./components/SummaryStep";
 
 function App() {
   const {
@@ -33,13 +34,17 @@ function App() {
             <StepMachine>
               {/* Steps  */}
               <StepContainer styles={{ minHeight: "350px" }}>
-                {template.steps.map(step => (
+                {template.steps.map((step, index) => (
                   <Step order={step.order}>
-                    <ProjectStep
-                      options={step}
-                      control={control}
-                      errors={errors}
-                    />
+                    {index === (template.steps.length - 1) ? (
+                      <SummaryStep />
+                    ) : (
+                      <ProjectStep
+                        options={step}
+                        control={control}
+                        errors={errors}
+                      />
+                    )}
                   </Step>
                 ))}
               </StepContainer>
